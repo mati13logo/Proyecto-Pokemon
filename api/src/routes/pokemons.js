@@ -4,7 +4,7 @@ const axios = require('axios')
 const {Pokemon , Type}= require('../db')
 
 const getInfoApi = async () => {
-    const apiInfo = await axios.get('https://pokeapi.co/api/v2/pokemon')
+    const apiInfo = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=40')
 
     const apiMapInfo = apiInfo.data.results.map(pokemon =>  axios.get(pokemon.url))
     const pokemonApi = await axios.all(apiMapInfo);
@@ -83,15 +83,15 @@ const getAllInfo = async ()=>{
 
     router.post('/', async(req, res)=>{
         try{
-            const {name, image , health, attack, defense, speed, height, weight, type} = req.body
+            const {name, image , health, attack, defense, speed, height, weight, types} = req.body
             const pokemonCreated = await Pokemon.create({
                 name, image , health, attack, defense, speed, height, weight
             })
             let typeDb = await Type.findAll({
-                where:{name: type}
+                where:{name: types}
             })
             pokemonCreated.addType(typeDb)
-            res.send('exito')
+            res.send(pokemonCreated)
         }
         catch(error){
             console.log(error)

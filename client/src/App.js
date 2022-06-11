@@ -14,6 +14,7 @@ function App() {
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/home/:id' component={Details} />
+        <Route exact path='/create' component={Form}/>
       </Switch>
     </BrowserRouter>
   );

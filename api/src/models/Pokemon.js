@@ -49,6 +49,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue: "50",
     },
+    createdByDb:{
+      type: DataTypes.BOOLEAN,
+      defaultValue:true,
+    }
     
   });
 };
