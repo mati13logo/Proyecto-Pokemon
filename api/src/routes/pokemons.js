@@ -52,16 +52,22 @@ const getAllInfo = async ()=>{
 
 
     router.get('/', async(req, res)=>{
-    const name = req.query.name
-    let pokemonsTotal = await getAllInfo();
-    if(name){
-        let pokemonName = await pokemonsTotal.filter(el => el.name.toLowerCase().includes(name.toLowerCase()))
-        pokemonName.length ?
-            res.status(200).send(pokemonName) :
-            res.status(404).send('No existe ningun pokemon con ese nombre');
-    }else {
-        res.status(200).send(pokemonsTotal)
-    }
+        try{
+            const name = req.query.name
+            let pokemonsTotal = await getAllInfo();
+            if(name){
+                let pokemonName = await pokemonsTotal.filter(el => el.name.toLowerCase().includes(name.toLowerCase()))
+                pokemonName.length ?
+                    res.status(200).send(pokemonName) :
+                    res.status(404).send('No existe ningun pokemon con ese nombre');
+            }else {
+                res.status(200).send(pokemonsTotal)
+            }
+        }
+        catch(error){
+            console.log(error)
+        }
+
     })
 
 

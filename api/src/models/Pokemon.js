@@ -52,7 +52,8 @@ module.exports = (sequelize) => {
     createdByDb:{
       type: DataTypes.BOOLEAN,
       defaultValue:true,
-    }
+    },
+   
     
   });
 };

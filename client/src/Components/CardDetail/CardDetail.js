@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { Colors } from "../Colors/Colors";
+import Loading from "../Loading/Loading";
 
 export default function CardDetail({ name, image, health, defense, attack, speed, type }) {
-    if(name,image,health,defense,attack,speed,type){
-        return (
-            <DivConteiner>
-                <DivCard >
+
+    return (
+        <DivConteiner>
+            <DivCard >
                 <Hp>HP {health}</Hp>
-                <ImgCard src={image}/>
+                <ImgCard src={image} />
                 <H3Name>{name}</H3Name>
                 <DivTypes>
-                {/* {type?.length > 1 ? type?.map((el, index) => (<P key={index} >{el}</P>)) : <P>{type}</P>} */}
-                {type?.map((el,index) => <P key={index}>{`${el.name ? el.name : el}`} </P>)}
+                    {type?.map((el, index) => <P key={index}>{`${el.name ? el.name : el}`} </P>)}
                 </DivTypes>
                 <DivStats>
                     <div>
@@ -28,17 +28,26 @@ export default function CardDetail({ name, image, health, defense, attack, speed
                         <p>{speed}</p>
                     </div>
                 </DivStats>
-                </DivCard>
-            </DivConteiner>
-        )
-    }else{
-        return'no hay info pa'
-    }
+            </DivCard>
+        </DivConteiner>
+    )
+
 }
 const DivConteiner = styled.div`
 width:350px;
-/* background-color:red; */
-`
+@media (max-width:768px){
+    display:none;
+
+}
+@media (max-width:425px){
+    display:none;
+
+}
+ @media (max-width:375px){
+    display:none;
+
+}
+`   
 const DivCard = styled.div`
 background:radial-gradient(circle at 50% 0%, orange 36%, #ffffff 36%);
 width:100%;
@@ -50,14 +59,13 @@ const ImgCard = styled.img`
 display:block;
 width:180px;
 max-height:200px;
-/* position:relative; */
 margin:20px auto;
 `
 const Hp = styled.p`
 width:80px;
 background-color: #ffffff;
 text-align:center;
-padding:8px0;
+padding:8px;
 border-radius:30px;
 margin-left:auto;
 font-weight:400;
@@ -80,6 +88,6 @@ align-items:center;
 justify-content:space-between;
 text-align: center;
 `
- const P = styled.p`
+const P = styled.p`
 margin: 0;
 `
